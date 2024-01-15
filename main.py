@@ -1,67 +1,134 @@
 # task 1
-import os
+class Soda:
 
-print('Текущая директория: ', os.getcwd())
-os.mkdir('folder')
-os.chdir('folder')
-print('Текущая директория изменилась на folder: ', os.getcwd())
-os.makedirs('level_1/level_2/level_3')
-text_file = open('text.txt', 'w')
-text_file.write('Это текстовый файл')
-os.rename('text.txt', 'renamed-text.txt')
-os.replace('renamed-text.txt', 'folder/renamed-text.txt')
-print('Все папки и файлы: ', os.listdir())
-os.walk():
-for dirpach, dirnames, filenames in os.walk('.'):
-    for dirname in dirnames:
-        print('Каталог: ', os.path.join(dirpach, dirname))
-        for filename in filenames:
-            print('Файл: ', os.path.join(dirpach, dirname))
-os.remove('folder/renamed-text.txt')
-os.rmdir('folder')
-os.removedirs('level_1/level_2/level_3')
-open('text.txt', 'w').write('Это текстовый файл: ')
-print(os.stat('text.txt'))
+    def __init__(self, taste,):
+        self.taste = taste
+
+    def my_drink(self, my_drink):
+        self.my_drink = my_drink
+
+
+my_drink = Soda(taste='Straberry')
+print(my_drink.taste)
+my_drink = Soda(taste='No taste')
+print(my_drink.taste)
 
 # task 2
-string = ('Подсудимая Эверт-Колокольцева Елизавета Александравна в судебном заседании '
-          'вину инкриминируемого правонарушения признала в полном объёме и суду показала, '
-          'что 14 сентября 1876 года, будучи в состоянии алькогольного опьянения от '
-          'безысходности, в связи с состоянием здоровья позвонила со своего стационарного '
-          'телефона в полицию, сообщив о том, что у неё в квартире якобы заложена бомба. '
-          'После чего приехали сотрудники полиции, скорая и пожарные, которым она сообщила, '
-          'что бомба - это она.')
-print(re.sub(r'[А-ЯЁ]\w*'
-             r'(?:-[А-ЯЁ]\w*)?'
-             r'(?:[А-ЯЁ]\w*){2}', 'N', string)
 
+
+class Math:
+    def __init__(self, a, b, example):
+        self.a = a
+        self.b = b
+        self.example = example
+
+    def __add__(self):
+        print(self.a + self.b)
+
+    def __mul__(self):
+        print(self.a * self.b)
+
+    def division(self):
+        print(self.a / self.b)
+
+    def subtraction(self):
+        print(self.a - self.b)
 # task 3
-list = 'abc a bCd bC AbC BC BCD bcd ABC'
-with open('file.txt', 'r') as f:
-s = list(map(lambda i: i.strip('.,!?'), f.read().lower().split()))
-m = max(sorted(s), key=lambda j: s.count(j))
-print('%s %d' % (m, s.count(m)))
+
+
+class Car:
+
+    car_count = 0
+
+    def __init__(self, color, type, year):
+        self.color = color
+        self.type = type
+        self.year = year
+        Car.car_count += 1
+
+    def start(self):
+        print('The car is started')
+
+    def stop(self):
+        print('The car is turned off')
+
+    def set_color(self, color):
+        self.color = color
+
+    def set_type(self, type):
+        self.type = type
+
+    def set_year(self, year):
+        self.year = year
+
+
+car_a = Car(color='blue', type='sportcar', year=2005)
+car_a.start()
+print(car_a.car_count)
+car_a.stop()
+
+car_b = Car(color='yellow', type='liftback', year=2017)
+car_b.start()
+print(car_b.car_count)
+
+car_c = Car(color='red', type='family', year=2000)
+car_c.start()
+print(car_c.car_count)
+car_c.stop()
 
 # task 4
-with open('stop_words.txt') as stop_words, open(input()) as to_change:
-    pattern, text = stop_words.read().split(), to_change.read()
-text_lower = text.lower()
-for word in pattern:
-    text_lower = text_lower.replace(word, '*' * len(word))
-result = ''.join((y, x)[x == '*'] for x, y in zip(text_lower, text))
-print(result)
+from math import pi
+
+
+class Sphere:
+    def __int__(self, *arg):
+        if len(arg) == 0:
+            arg = (1, 0, 0, 0)
+        elif len(arg) == 1:
+            arg = (arg[0], 0, 0, 0)
+        else:
+            raise TypeError
+        self.r, self.x, self.y, self.z = arg
+
+    def get_volume(self):
+        return (self.r ** 3) * pi * 4/3
+
+    def get_square(self):
+        return (self.r ** 2) * pi * 4
+
+    def get_radius(self):
+        return self.r
+
+    def get_center(self):
+        return (self.x, self.y, self.z)
+
+    def set_radius(self, r):
+        self.r = r
+
+    def set_center(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def is_point_inside(self, x, y, z):
+        return (self.x - x) ** 2 + (self.y - y) ** 2 + (self.z - z) ** 2 < self.r ** 2
+
+
+some = Sphere()
+print(some.get_volume)
+print(some.get_radius)
+print(some.get_center)
+print(some.set_center)
 
 # task 5
-f = open('text.txt')
-suma = 0
-n = 0
-for i in f:
-    g = int(i[len(i) - 2])
-suma += g
-n += 1
-if g < 3:
-    print(i[:-1])
 
-    # task 6
 
-    # task 7
+class SuperStr:
+    def is_repeatance(self, s):
+        if not isinstance(s, str):
+            return False
+        n = len(self) % (len(s) or 1)
+        return self == n * s
+    def is_palindroma(self):
+        s = self.lower()
+        return s == s[::-1]
